@@ -178,19 +178,19 @@ btf.addGlobalFn('pjaxSend', () => {
 <p>当然也可以发碎碎念或者聊天，这些我后面会介绍，现在先简单介绍一下怎么写博客</p>
 <h3 id="创建和删除博客">创建和删除博客</h3>
 <p>首先，先在博客的根目录（比如…/hexo）“右键 - 显示更多选项 - Open Git Bash here”</p>
-<p><img src="/posts/96b417b7.htm/%E5%85%B3%E4%BA%8E%E8%BF%99%E4%B8%AA%E7%BD%91%E7%AB%99/1755575140745.png" alt="1755575140745"></p>
+<p><img src="/posts/96b417b7/%E5%85%B3%E4%BA%8E%E8%BF%99%E4%B8%AA%E7%BD%91%E7%AB%99/1755575140745.png" alt="1755575140745"></p>
 <p>打开 Git Bash窗口后，输入</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new 文章名</span><br></pre></td></tr></table></figure>
 <p>例如，我想创建一篇名为 <strong>光学</strong> 的博客/笔记，那我输入的命令就是</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new 光学</span><br></pre></td></tr></table></figure>
 <p>执行完后的结果如下：</p>
-<p><img src="/posts/96b417b7.htm/%E5%85%B3%E4%BA%8E%E8%BF%99%E4%B8%AA%E7%BD%91%E7%AB%99/1755575329656.png" alt="1755575329656"></p>
+<p><img src="/posts/96b417b7/%E5%85%B3%E4%BA%8E%E8%BF%99%E4%B8%AA%E7%BD%91%E7%AB%99/1755575329656.png" alt="1755575329656"></p>
 <p>现在在 <strong>hexo根目录\source\_post</strong> 目录下可以找到我们刚刚创建的博客的md文件</p>
-<p><img src="/posts/96b417b7.htm/%E5%85%B3%E4%BA%8E%E8%BF%99%E4%B8%AA%E7%BD%91%E7%AB%99/1755575445086.png" alt="1755575445086"></p>
-<p><img src="/posts/96b417b7.htm/%E5%85%B3%E4%BA%8E%E8%BF%99%E4%B8%AA%E7%BD%91%E7%AB%99/1755575477984.png" alt="1755575477984"></p>
-<p><img src="/posts/96b417b7.htm/%E5%85%B3%E4%BA%8E%E8%BF%99%E4%B8%AA%E7%BD%91%E7%AB%99/1755575518735.png" alt="1755575518735"></p>
+<p><img src="/posts/96b417b7/%E5%85%B3%E4%BA%8E%E8%BF%99%E4%B8%AA%E7%BD%91%E7%AB%99/1755575445086.png" alt="1755575445086"></p>
+<p><img src="/posts/96b417b7/%E5%85%B3%E4%BA%8E%E8%BF%99%E4%B8%AA%E7%BD%91%E7%AB%99/1755575477984.png" alt="1755575477984"></p>
+<p><img src="/posts/96b417b7/%E5%85%B3%E4%BA%8E%E8%BF%99%E4%B8%AA%E7%BD%91%E7%AB%99/1755575518735.png" alt="1755575518735"></p>
 <p>打开它，然后编辑里面的内容保存，文章的title和date是自动生成的，标签tag是可以自定义的。</p>
-<p><img src="/posts/96b417b7.htm/%E5%85%B3%E4%BA%8E%E8%BF%99%E4%B8%AA%E7%BD%91%E7%AB%99/1755576098596.png" alt="1755576098596"></p>
+<p><img src="/posts/96b417b7/%E5%85%B3%E4%BA%8E%E8%BF%99%E4%B8%AA%E7%BD%91%E7%AB%99/1755576098596.png" alt="1755576098596"></p>
 <p>上面编辑的博客文件是在本地操作的，还没有把新创建的文章上传到github。所以写完编辑完博客md文件之后，还需要在bash中（记得是在hexo根目录右键打开Git Bash）执行下面的操作将文章上传</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
 <p>上面三个命令的作用分别是：</p>
