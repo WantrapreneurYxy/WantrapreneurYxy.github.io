@@ -1,0 +1,381 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>关于从头开始搭建个人博客网站 | fxr的专属博客</title><meta name="author" content="Dr. Fengxr"><meta name="copyright" content="Dr. Fengxr"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="这里我会教你从零开始一步步搭建，基本所有的命令都已经写好了，你只需要按照这篇说明书操作（基本都是复制、粘贴、按 Enter）就行了，整个过程大概半个小时，还是很方便的，是当之无愧的保姆级教程，草履虫看了都会。那么，开始吧 极简版 只包含所有安装命令，更详细的指引请看后文  新建文件夹（根目录）用于存放博客文件（建议不要放在C盘） 把搭建压缩包里的 install.ps1 复制到根目录下 安装依赖">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于从头开始搭建个人博客网站">
+<meta property="og:url" content="https://wantrapreneuryxy.github.io/posts/636e763.html">
+<meta property="og:site_name" content="fxr的专属博客">
+<meta property="og:description" content="这里我会教你从零开始一步步搭建，基本所有的命令都已经写好了，你只需要按照这篇说明书操作（基本都是复制、粘贴、按 Enter）就行了，整个过程大概半个小时，还是很方便的，是当之无愧的保姆级教程，草履虫看了都会。那么，开始吧 极简版 只包含所有安装命令，更详细的指引请看后文  新建文件夹（根目录）用于存放博客文件（建议不要放在C盘） 把搭建压缩包里的 install.ps1 复制到根目录下 安装依赖">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wantrapreneuryxy.github.io/img/head.jpg">
+<meta property="article:published_time" content="2025-09-09T03:42:15.000Z">
+<meta property="article:modified_time" content="2025-09-10T01:37:08.762Z">
+<meta property="article:author" content="Dr. Fengxr">
+<meta property="article:tag" content="yxy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wantrapreneuryxy.github.io/img/head.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "关于从头开始搭建个人博客网站",
+  "url": "https://wantrapreneuryxy.github.io/posts/636e763.html",
+  "image": "https://wantrapreneuryxy.github.io/img/head.jpg",
+  "datePublished": "2025-09-09T03:42:15.000Z",
+  "dateModified": "2025-09-10T01:37:08.762Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Dr. Fengxr",
+      "url": "https://WantrapreneurYxy.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://wantrapreneuryxy.github.io/posts/636e763.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":150,"languages":{"author":"作者: Dr. Fengxr","link":"链接: ","source":"来源: fxr的专属博客","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '关于从头开始搭建个人博客网站',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/style.css?1"><meta name="generator" content="Hexo 7.3.0"></head><body><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+btf.addGlobalFn('pjaxSend', () => {
+  Pace.restart()
+}, 'pace_restart')
+
+</script><link rel="stylesheet" href="https://github.com/WantrapreneurYxy/WantrapreneurYxy.github.io/blob/main/css/center-atom.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg" style="background-image: url(https://wantrapreneuryxy.github.io/img/background.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/head.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/background.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">fxr的专属博客</span></a><a class="nav-page-title" href="/"><span class="site-name">关于从头开始搭建个人博客网站</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">关于从头开始搭建个人博客网站</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-09-09T03:42:15.000Z" title="发表于 2025-09-09 11:42:15">2025-09-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-09-10T01:37:08.762Z" title="更新于 2025-09-10 09:37:08">2025-09-10</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">2.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>10分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>这里我会教你从零开始一步步搭建，基本所有的命令都已经写好了，你只需要按照这篇说明书操作（基本都是复制、粘贴、按 Enter）就行了，整个过程大概半个小时，还是很方便的，是当之无愧的保姆级教程，草履虫看了都会。那么，开始吧</p>
+<h2 id="极简版">极简版</h2>
+<p>只包含所有安装命令，更详细的指引请看后文</p>
+<ol>
+<li>新建文件夹（根目录）用于存放博客文件（建议不要放在C盘）</li>
+<li>把搭建压缩包里的 <code>install.ps1</code> 复制到根目录下</li>
+<li>安装依赖</li>
+</ol>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./install.ps1</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>换源</li>
+</ol>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config <span class="built_in">set</span> registry https://registry.npmmirror.com</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>安装hexo</li>
+</ol>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo<span class="literal">-cli</span> <span class="literal">-g</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
+<ol start="6">
+<li>安装插件</li>
+</ol>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo<span class="literal">-deployer-git</span> <span class="literal">--save</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo<span class="literal">-deployer-git</span> <span class="literal">--save</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo<span class="literal">-theme-butterfly</span> <span class="literal">--save</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo<span class="literal">-renderer-pug</span> hexo<span class="literal">-renderer-stylus</span> <span class="literal">--save</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install https://github.com/CodeFalling/hexo<span class="literal">-asset-image</span> <span class="literal">--save</span></span><br></pre></td></tr></table></figure>
+<ol start="7">
+<li>在GitHub上创建一个名为 <code>用户名.github.io</code> 的仓库，修改 <code>根目录\_config.yml</code> 最底下的deploy部分</li>
+</ol>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 站点部署到github要配置Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://zespia.tw/hexo/docs/deploy.html</span></span><br><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repo:</span><br><span class="line">    github:</span><br><span class="line">      url: git@github.com:username/username.github.io.git  <span class="comment"># 记得把username替换为自己的用户名</span></span><br><span class="line">      branch: main</span><br></pre></td></tr></table></figure>
+<ol start="8">
+<li>执行hexo三连</li>
+</ol>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<ol start="9">
+<li>修改 <code>根目录\_config.yml</code> ，直接复制粘贴下面的内容覆盖原有内容即可。注意修改16行的用户名为你自己的用户名，同时最后的deploy部分按第7步写，不要看我这里的</li>
+</ol>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Hexo Configuration</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/configuration.html</span></span><br><span class="line"><span class="comment">## Source: https://github.com/hexojs/hexo/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Site</span></span><br><span class="line">title: fxr的专属博客</span><br><span class="line"><span class="comment"># subtitle: &quot;听风正轻轻拂过&quot;</span></span><br><span class="line">description: <span class="string">&quot;将时光定格在此处&quot;</span></span><br><span class="line">keywords:</span><br><span class="line">author: Dr. Fengxr</span><br><span class="line">language: zh<span class="literal">-CN</span></span><br><span class="line">timezone: <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># URL</span></span><br><span class="line"><span class="comment">## Set your site url here. For example, if you use GitHub Page, set url as &#x27;https://username.github.io/project&#x27;</span></span><br><span class="line">url: https://WantrapreneurYxy.github.io</span><br><span class="line"><span class="comment"># permalink: :year/:month/:day/:title/</span></span><br><span class="line">permalink: posts/:abbrlink.html</span><br><span class="line"><span class="comment">## abbrlink config</span></span><br><span class="line">abbrlink:</span><br><span class="line">  alg: crc32 <span class="comment">#support crc16(default) and crc32 进制</span></span><br><span class="line">  rep: hex <span class="comment">#support dec(default) and hex  算法</span></span><br><span class="line">  drafts: false <span class="comment">#(true)Process draft,(false)Do not process draft. false(default)</span></span><br><span class="line">  <span class="comment">## Generate categories from directory-tree</span></span><br><span class="line">  <span class="comment">## depth: the max_depth of directory-tree you want to generate, should &gt; 0</span></span><br><span class="line">  auto_category:</span><br><span class="line">    enable: true <span class="comment">#true(default)</span></span><br><span class="line">    depth: <span class="comment">#3(default)</span></span><br><span class="line">    over_write: false</span><br><span class="line">  auto_title: false <span class="comment">#enable auto title, it can auto fill the title by path</span></span><br><span class="line">  auto_date: false <span class="comment">#enable auto date, it can auto fill the date by time today</span></span><br><span class="line">  force: false <span class="comment">#enable force mode,in this mode, the plugin will ignore the cache, and calc the abbrlink for every post even it already had abbrlink.</span></span><br><span class="line"><span class="comment"># permalink_defaults:</span></span><br><span class="line"><span class="comment"># pretty_urls:</span></span><br><span class="line"><span class="comment"># trailing_index: true # Set to false to remove trailing &#x27;index.html&#x27; from permalinks</span></span><br><span class="line"><span class="comment"># trailing_html: true # Set to false to remove trailing &#x27;.html&#x27; from permalinks</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Directory</span></span><br><span class="line">source_dir: source</span><br><span class="line">public_dir: public</span><br><span class="line">tag_dir: tags</span><br><span class="line">archive_dir: archives</span><br><span class="line">category_dir: categories</span><br><span class="line">code_dir: downloads/code</span><br><span class="line">i18n_dir: :lang</span><br><span class="line">skip_render:</span><br><span class="line"></span><br><span class="line"><span class="comment"># Writing</span></span><br><span class="line">new_post_name: :title.md <span class="comment"># File name of new posts</span></span><br><span class="line">default_layout: post</span><br><span class="line">titlecase: false <span class="comment"># Transform title into titlecase</span></span><br><span class="line">external_link:</span><br><span class="line">  enable: true <span class="comment"># Open external links in new tab</span></span><br><span class="line">  field: site <span class="comment"># Apply to the whole site</span></span><br><span class="line">  exclude: <span class="string">&quot;&quot;</span></span><br><span class="line">filename_case: <span class="number">0</span></span><br><span class="line">render_drafts: false</span><br><span class="line">post_asset_folder: true</span><br><span class="line">relative_link: false</span><br><span class="line">future: true</span><br><span class="line">syntax_highlighter: highlight.js</span><br><span class="line">highlight:</span><br><span class="line">  line_number: true</span><br><span class="line">  auto_detect: false</span><br><span class="line">  tab_replace: <span class="string">&quot;&quot;</span></span><br><span class="line">  wrap: true</span><br><span class="line">  hljs: false</span><br><span class="line">  exclude_languages: [<span class="string">&quot;mermaid&quot;</span>]</span><br><span class="line">prismjs:</span><br><span class="line">  preprocess: true</span><br><span class="line">  line_number: true</span><br><span class="line">  tab_replace: <span class="string">&quot;&quot;</span></span><br><span class="line">  exclude_languages: [<span class="string">&quot;mermaid&quot;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Home page setting</span></span><br><span class="line"><span class="comment"># path: Root path for your blogs index page. (default = &#x27;&#x27;)</span></span><br><span class="line"><span class="comment"># per_page: Posts displayed per page. (0 = disable pagination)</span></span><br><span class="line"><span class="comment"># order_by: Posts order. (Order by date descending by default)</span></span><br><span class="line">index_generator:</span><br><span class="line">  path: <span class="string">&quot;&quot;</span></span><br><span class="line">  per_page: <span class="number">10</span></span><br><span class="line">  order_by: <span class="literal">-date</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Category &amp; Tag</span></span><br><span class="line">default_category: uncategorized</span><br><span class="line">category_map:</span><br><span class="line">tag_map:</span><br><span class="line"></span><br><span class="line"><span class="comment"># Metadata elements</span></span><br><span class="line"><span class="comment">## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta</span></span><br><span class="line">meta_generator: true</span><br><span class="line"></span><br><span class="line"><span class="comment"># Date / Time format</span></span><br><span class="line"><span class="comment">## Hexo uses Moment.js to parse and display date</span></span><br><span class="line"><span class="comment">## You can customize the date format as defined in</span></span><br><span class="line"><span class="comment">## http://momentjs.com/docs/#/displaying/format/</span></span><br><span class="line">date_format: YYYY<span class="literal">-MM-DD</span></span><br><span class="line">time_format: HH:mm:ss</span><br><span class="line"><span class="comment">## updated_option supports &#x27;mtime&#x27;, &#x27;date&#x27;, &#x27;empty&#x27;</span></span><br><span class="line">updated_option: <span class="string">&quot;mtime&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Pagination</span></span><br><span class="line"><span class="comment">## Set per_page to 0 to disable pagination</span></span><br><span class="line">per_page: <span class="number">10</span></span><br><span class="line">pagination_dir: page</span><br><span class="line"></span><br><span class="line"><span class="comment"># Include / Exclude file(s)</span></span><br><span class="line"><span class="comment">## include:/exclude: options only apply to the &#x27;source/&#x27; folder</span></span><br><span class="line">include:</span><br><span class="line">exclude:</span><br><span class="line">ignore:</span><br><span class="line"></span><br><span class="line"><span class="comment"># Extensions</span></span><br><span class="line"><span class="comment">## Plugins: https://hexo.io/plugins/</span></span><br><span class="line"><span class="comment">## Themes: https://hexo.io/themes/</span></span><br><span class="line">theme: butterfly</span><br><span class="line">markdown:</span><br><span class="line">  plugins:</span><br><span class="line">    - <span class="string">&quot;@renbaoshuo/markdown-it-katex&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/one-command-deployment</span></span><br><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repo:</span><br><span class="line">    github:</span><br><span class="line">      url: git@github<span class="literal">-wantyxy</span>:WantrapreneurYxy/WantrapreneurYxy.github.io.git</span><br><span class="line">      branch: main</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ol start="10">
+<li>修改主题配置文件 <code>根目录\themes\butterfly\_config.yml</code>，这个极简不了了，可以直接跳到</li>
+</ol>
+<h2 id="安装依赖">安装依赖</h2>
+<blockquote>
+<p>配环境是世界上最困难的事情之一 —— yxy</p>
+</blockquote>
+<p>但是好在我已经把所有配环境的操作都写成了一个脚本，可以一键执行安装，下面请按步骤操作：</p>
+<ol>
+<li>首先创建一个空文件夹，用于放置整个博客项目，哪里都可以，博客网站不会很大的。例如 <code>.../hexo</code>，后面我会把这个文件夹简称为 <strong>根目录</strong></li>
+<li>把压缩包里的 <code>install.ps1</code> 脚本复制到根目录下</li>
+<li>在根目录单击鼠标右键 - 在终端中打开，打开 powershell 窗口</li>
+<li>执行下面的命令一键安装所有依赖，包括git、nodejs和npm</li>
+</ol>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./install.ps1</span><br></pre></td></tr></table></figure>
+<p>执行下面命令测试git是否安装成功：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="literal">--version</span></span><br></pre></td></tr></table></figure>
+<p>如果安装成功则会输出类似下面的版本号</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\Dr.Yang&gt;git <span class="literal">--version</span></span><br><span class="line">git version <span class="number">2.48</span>.<span class="number">1</span>.windows.<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>如果你从来没有使用过Github和Git，可以参考 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/1903776267406402254">这篇文章</a> 创建Github账号并配置ssh连接，使用下面的命令测试ssh连接是否正常：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh <span class="literal">-T</span> git@github.com</span><br></pre></td></tr></table></figure>
+<p>如果ssh连接正常，则示例输出如下：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\Dr.Yang&gt;ssh <span class="literal">-T</span> git@github.com</span><br><span class="line">Hi Prof<span class="literal">-yxy</span>! You<span class="string">&#x27;ve successfully authenticated, but GitHub does not provide shell access.</span></span><br></pre></td></tr></table></figure>
+<p>然后，执行下面的命令测试nodejs是否成功安装：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br></pre></td></tr></table></figure>
+<p>安装成功则输出类似下面的版本号：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\Dr.Yang&gt;node <span class="literal">-v</span></span><br><span class="line">v22.<span class="number">14.0</span></span><br></pre></td></tr></table></figure>
+<p>执行下面命令测试npm是否正常安装：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="literal">-v</span></span><br></pre></td></tr></table></figure>
+<p>安装成功则输出版本号：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\Dr.Yang&gt;npm <span class="literal">-v</span></span><br><span class="line"><span class="number">10.9</span>.<span class="number">2</span></span><br></pre></td></tr></table></figure>
+<p>如果上述三个依赖都成功安装，那么恭喜你成功完成了最难.的部分——配环境</p>
+<blockquote>
+<p>也恭喜我第一次成功写了一个一键配环境的脚本(bushi</p>
+</blockquote>
+<h2 id="安装hexo">安装hexo</h2>
+<p>安装完依赖(主要是git、scoop和nodejs)后，就可以正式开始安装hexo了。</p>
+<blockquote>
+<p>hexo是一个博客框架，相当于一个博客网站的模板，安装之后就已经得到了一个可运行的博客网站，然后自己再次基础上进行自定义就行</p>
+</blockquote>
+<p>首先在你的电脑上找一个地方新建文件夹，用于存放博客网站的所有文件，例如 <code>D:\hexo</code>。哪里都可以，因为博客网站很小，不会超过2个G。</p>
+<p>后面我会简称这个文件夹为 <strong>根目录</strong></p>
+<p>安装hexo的操作极其简单，也是一行命令就行。</p>
+<p>在根目录中 <strong>右键 - Git Bash Here</strong>，先换源加快下载和安装速度：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config <span class="built_in">set</span> registry https://registry.npmmirror.com</span><br></pre></td></tr></table></figure>
+<p>然后一键安装hexo：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo<span class="literal">-cli</span> <span class="literal">-g</span></span><br></pre></td></tr></table></figure>
+<p>然后就可以初始化hexo博客了：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
+<p>执行完上面的init命令后，你就会发现根目录下已经有了不少文件，这说明到这一步为止都非常顺利</p>
+<h2 id="安装插件">安装插件</h2>
+<p>上面安装的只是最基础的hexo框架，有很多功能需要靠安装插件来实现，下面是几个必要的插件，安装命令同样在根目录下打开终端执行</p>
+<ol>
+<li>github部署插件：用于将博客网站部署到github上</li>
+</ol>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo<span class="literal">-deployer-git</span> <span class="literal">--save</span></span><br></pre></td></tr></table></figure>
+<p>如果不部署在github只部署在本地，你的电脑就是服务器，只要你的电脑关机，别人就无法访问你的博客了</p>
+<ol start="2">
+<li>主题插件butterfly</li>
+</ol>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo<span class="literal">-theme-butterfly</span> <span class="literal">--save</span></span><br></pre></td></tr></table></figure>
+<p>主题可以理解为博客网站的皮肤，这款 butterfly 主题还是很漂亮很高大上的，当然需要后面进行一点配置</p>
+<ol start="3">
+<li>安装渲染插件</li>
+</ol>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo<span class="literal">-renderer-pug</span> hexo<span class="literal">-renderer-stylus</span> <span class="literal">--save</span></span><br></pre></td></tr></table></figure>
+<p>这些是 butterfly 主题需要的插件，用于网站特效的渲染和显示</p>
+<ol start="4">
+<li>安装图片处理插件</li>
+</ol>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install https://github.com/CodeFalling/hexo<span class="literal">-asset-image</span> <span class="literal">--save</span></span><br></pre></td></tr></table></figure>
+<p>在hexo博客上显示图片是一个非常非常麻烦的问题，后面我会再介绍，现在先把插件装上先</p>
+<p>上面所有插件安装时，如果遇到网络错误安装失败，可以试试<strong>用一点点魔法</strong></p>
+<p>安装完之后可以执行下面三个命令生成网站并预览：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意执行完hexo s后不要关掉命令行窗口也不要停止命令，不然就访问不了了</p>
+</blockquote>
+<p>然后在浏览器上输入 <code>localhost:4000</code>，回车，就能看到一个模板博客网站</p>
+<p><img src="/posts/636e763/1757466190319.png" alt="1757466190319"></p>
+<p>如果能够成功显示网站，那么说明到此为止的所有操作都成功执行，可以继续往下</p>
+<h2 id="部署到github上">部署到github上</h2>
+<p>可以注意到上面我们访问博客网站的网址是 <code>localhost:4000</code> 说明目前的博客其实是部署在本地的</p>
+<p>说人话就是，这个博客网站就像一个软件，通过 <code>hexo s</code> 这个命令运行。所以一旦运行 <code>hexo s</code> 的命令行关闭了或停止执行了，就相当于这个软件关闭了，就无法访问网站了</p>
+<p>这就是说，如果想要你的网站保持开放，就需要24小时不关电脑并且挂一个软件在后台，非常麻烦。所以需要部署到Github上，博客服务就由Github Page提供而不依赖于本地了</p>
+<h3 id="注册Github账号并创建仓库">注册Github账号并创建仓库</h3>
+<p>如果你从来没用过Github，先注册一个账号</p>
+<p>然后创建一个仓库，仓库名<strong>必须</strong>为 <strong><a target="_blank" rel="noopener" href="http://xn--eqr924avxo.github.io">用户名.github.io</a></strong></p>
+<p>例如假如我的GitHub用户名是Fengxr，那么创建的仓库名就必须为 <a target="_blank" rel="noopener" href="http://Fengxr.github.io">Fengxr.github.io</a></p>
+<h3 id="修改配置文件">修改配置文件</h3>
+<p>打开配置文件 <code>根目录/_config.yml</code> ，修改最底下的deploy配置为下面内容：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 站点部署到github要配置Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://zespia.tw/hexo/docs/deploy.html</span></span><br><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repo:</span><br><span class="line">    github:</span><br><span class="line">      url: git@github.com:username/username.github.io.git  <span class="comment"># 记得把username替换为自己的用户名</span></span><br><span class="line">      branch: main</span><br></pre></td></tr></table></figure>
+<h3 id="把本地hexo提交到GitHub仓库">把本地hexo提交到GitHub仓库</h3>
+<p>完成上述配置后，在根目录下 右键 - 在终端中打开，然后输入下面三个命令：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>后面我会把这三个命令简称为 “<strong>hexo三连</strong>” ，因为所有的设置或配置都需要执行 <strong>hexo三连</strong> 才能保存生效</p>
+</blockquote>
+<p>执行后，本地的博客文件就上传到GitHub上了。</p>
+<p>现在就可以通过 <code>https://username.github.io</code> 访问你的博客了，注意把 <code>username</code> 换成自己的用户名</p>
+<h2 id="配置外观和功能">配置外观和功能</h2>
+<p>首先说明一下，自定义配置过程会用到两个文件：</p>
+<ol>
+<li>根目录下的 <code>_config.yml</code>：用于配置网站的全局设置，打个比方，对人物本身（脸型、身材……）做调整</li>
+<li><code>根目录\themes\butterfly\_config.yml</code>：对主题进行设置，打比方就是，对人物的皮肤/衣服穿搭做调整</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://WantrapreneurYxy.github.io">Dr. Fengxr</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://wantrapreneuryxy.github.io/posts/636e763.html">https://wantrapreneuryxy.github.io/posts/636e763.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://WantrapreneurYxy.github.io" target="_blank">fxr的专属博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/yxy/">yxy</a></div><div class="post-share"><div class="social-share" data-image="/img/head.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/posts/3ea4344b.html" title="关于把这个网站变成你自己的"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">关于把这个网站变成你自己的</div></div><div class="info-2"><div class="info-item-1">这个博客网站其实是部署在 github 上面的，部署原理如下： 本地编辑文章/修改设置 -&gt; 上传到 github -&gt; 访问 github pages（也就是渲染后的博客网站）  这个博客网站现在是用 我的 github 仓库 管理，所以只能由我进行设置和修改。那如何将其转交给你呢？以及，如何自己从头开始搭建一个呢（如果你真的很感兴趣的话）？下面我会一一介绍，有点复杂，但是 99%的部分我都帮你做好了（yysy 做这个网站是真的有点麻烦的），所以不要害怕，let’s dive in 创建 github 仓库 首先如果你没有 github 账号的话，先注册一个，配置好 ssh 连接。然后创建一个名为 用户名.github.io 的仓库。假设你的用户名是 fxr那就创建一个名字是 fxr.github.io 的空仓库。 比如说我的就叫 WantrapreneurYxy.github.io  你的刚创建完应该是一个空仓库 配置依赖  配环境是这个世界上最困难的事情之一 —— yxy  不过好在，所有的操作我都写成了一个脚本： install.ps1 你所需要做的只有几步：...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/posts/3ea4344b.html" title="关于把这个网站变成你自己的"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-08-26</div><div class="info-item-2">关于把这个网站变成你自己的</div></div><div class="info-2"><div class="info-item-1">这个博客网站其实是部署在 github 上面的，部署原理如下： 本地编辑文章/修改设置 -&gt; 上传到 github -&gt; 访问 github pages（也就是渲染后的博客网站）  这个博客网站现在是用 我的 github 仓库 管理，所以只能由我进行设置和修改。那如何将其转交给你呢？以及，如何自己从头开始搭建一个呢（如果你真的很感兴趣的话）？下面我会一一介绍，有点复杂，但是 99%的部分我都帮你做好了（yysy 做这个网站是真的有点麻烦的），所以不要害怕，let’s dive in 创建 github 仓库 首先如果你没有 github 账号的话，先注册一个，配置好 ssh 连接。然后创建一个名为 用户名.github.io 的仓库。假设你的用户名是 fxr那就创建一个名字是 fxr.github.io 的空仓库。 比如说我的就叫 WantrapreneurYxy.github.io  你的刚创建完应该是一个空仓库 配置依赖  配环境是这个世界上最困难的事情之一 —— yxy  不过好在，所有的操作我都写成了一个脚本： install.ps1 你所需要做的只有几步：...</div></div></div></a><a class="pagination-related" href="/posts/117bafcb.html" title="关于这个网站怎么用"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-08-20</div><div class="info-item-2">关于这个网站怎么用</div></div><div class="info-2"><div class="info-item-1">这个网站是什么 如你所见，这个网站是一个个人博客，也可以说是一个个人专属网络空间。用途远远不止博客，还可以用来存照片、写日记，当然也可以和其他人共同管理，当作一个小团体的共享空间也行。 应该怎么用这个网站 博客网站最主要的功能当然就是写博客。虽然我一般也不会闲的没事写文章，但是把自己的学习笔记发到博客上倒是个好主意，这样无论在哪里都可以看到自己的笔记，再也不用担心笔记在电脑上但是电脑没带看不了。不过前提是你的笔记是在电脑上 markdown 写好的。  markdown 做笔记真的挺方便的，如果你还没有试过，可以下载 typora 或者在 vscode 里面安装 Microsoft Office Viewer 这个插件，都可以方便地编辑 markdown 文件。同时这里也顺带推荐一个专门且极其强大的笔记软件，Obsidian。这个笔记软件在普通 markdown 的基础上添加了双向链接和标签功能，而且用来和 pdf 文件联动非常方便，是目前当之无愧的 top1 笔记软件，有兴趣可以了解一下。   关于 markdown 编辑器，需要进行一些设置才能正常添加图片，看这篇文章后面有关...</div></div></div></a><a class="pagination-related" href="/posts/c33050b9.html" title="关于这份生日礼物"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-08-20</div><div class="info-item-2">关于这份生日礼物</div></div><div class="info-2"><div class="info-item-1">不知道当你收到这份礼物的时候，心里会想些什么？ “这啥啊？我都从来没用过 markdown 做笔记的给我这个干嘛？” “天哪好麻烦……有这功夫研究这些还不如多刷两道题” “可以看得出很用心但是我就是不喜欢……” “yxy 为什么总是喜欢搞这些又浪费时间又没用的东西……” “……” “…………” 博客网站这个想法最初来源于计院一个高我一届的学长。当时我向他请教专业课的学习方法，没想到他直接甩给我一个网址，里面就是他的博客网站里的课程笔记，让我自己看。 当时我的感受是：卧槽！好帅的网站！真特么有逼格！（后来我才直到这个学长是他们年级的巨佬）。所以后来我就自己学着做了一个几乎一模一样的出来，也就是你现在看到的这个。 那为什么要把这个作为生日礼物呢？ 一个原因是我觉得用网站作为中转共享资料真的很方便，就像那个学长分享笔记给我一样，不需要再找到笔记文件再转发。还有一个就是我觉得多记录确实是一个很好的习惯，包括课程笔记啊，阅读心得啊都可以记录下来并且集中放到网站上 不过这些都是次要的，最重要的是，你看每个学校的老师不是都有一个个人主页嘛？ 我一直相信，有朝一日你会成为非常优秀的科研工作者，或...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/head.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Dr. Fengxr</div><div class="author-info-description">判天地之美，析万物之理</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/WantrapreneurYxy/WantrapreneurYxy.github.io"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%81%E7%AE%80%E7%89%88"><span class="toc-number">1.</span> <span class="toc-text">极简版</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96"><span class="toc-number">2.</span> <span class="toc-text">安装依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85hexo"><span class="toc-number">3.</span> <span class="toc-text">安装hexo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6"><span class="toc-number">4.</span> <span class="toc-text">安装插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2%E5%88%B0github%E4%B8%8A"><span class="toc-number">5.</span> <span class="toc-text">部署到github上</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E5%86%8CGithub%E8%B4%A6%E5%8F%B7%E5%B9%B6%E5%88%9B%E5%BB%BA%E4%BB%93%E5%BA%93"><span class="toc-number">5.1.</span> <span class="toc-text">注册Github账号并创建仓库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">5.2.</span> <span class="toc-text">修改配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%8A%E6%9C%AC%E5%9C%B0hexo%E6%8F%90%E4%BA%A4%E5%88%B0GitHub%E4%BB%93%E5%BA%93"><span class="toc-number">5.3.</span> <span class="toc-text">把本地hexo提交到GitHub仓库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%A4%96%E8%A7%82%E5%92%8C%E5%8A%9F%E8%83%BD"><span class="toc-number">6.</span> <span class="toc-text">配置外观和功能</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/636e763.html" title="关于从头开始搭建个人博客网站">关于从头开始搭建个人博客网站</a><time datetime="2025-09-09T03:42:15.000Z" title="发表于 2025-09-09 11:42:15">2025-09-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/3ea4344b.html" title="关于把这个网站变成你自己的">关于把这个网站变成你自己的</a><time datetime="2025-08-26T10:50:57.000Z" title="发表于 2025-08-26 18:50:57">2025-08-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/c33050b9.html" title="关于这份生日礼物">关于这份生日礼物</a><time datetime="2025-08-20T11:34:49.000Z" title="发表于 2025-08-20 19:34:49">2025-08-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/117bafcb.html" title="关于这个网站怎么用">关于这个网站怎么用</a><time datetime="2025-08-20T11:16:04.000Z" title="发表于 2025-08-20 19:16:04">2025-08-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/95293bf3.html" title="光学">光学</a><time datetime="2025-08-19T09:41:22.000Z" title="发表于 2025-08-19 17:41:22">2025-08-19</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By Dr. Fengxr</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button><button id="go-down" type="button" title="直达底部" onclick="btf.scrollToDest(document.body.scrollHeight, 500)"><i class="fas fa-arrow-down">   </i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (true) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script><script>(() => {
+  const runMermaid = ele => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    ele.forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = `%%{init:{ 'theme':'${theme}'}}%%\n`
+      const mermaidID = `mermaid-${index}`
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+      const renderMermaid = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      // mermaid v9 and v10 compatibility
+      typeof renderFn === 'string' ? renderMermaid(renderFn) : renderFn.then(({ svg }) => renderMermaid(svg))
+    })
+  }
+
+  const codeToMermaid = () => {
+    const codeMermaidEle = document.querySelectorAll('pre > code.mermaid')
+    if (codeMermaidEle.length === 0) return
+
+    codeMermaidEle.forEach(ele => {
+      const preEle = document.createElement('pre')
+      preEle.className = 'mermaid-src'
+      preEle.hidden = true
+      preEle.textContent = ele.textContent
+      const newEle = document.createElement('div')
+      newEle.className = 'mermaid-wrap'
+      newEle.appendChild(preEle)
+      ele.parentNode.replaceWith(newEle)
+    })
+  }
+
+  const loadMermaid = () => {
+    if (true) codeToMermaid()
+    const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+    if ($mermaid.length === 0) return
+
+    const runMermaidFn = () => runMermaid($mermaid)
+    btf.addGlobalFn('themeChange', runMermaidFn, 'mermaid')
+    window.loadMermaid ? runMermaidFn() : btf.getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaidFn)
+  }
+
+  btf.addGlobalFn('encrypt', loadMermaid, 'mermaid')
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script></div><script src="/js/script.js?1"></script><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
